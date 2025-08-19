@@ -1,0 +1,6 @@
+streamlit>=1.34
+pandas>=2.0
+
+# Optional but sometimes useful
+altair>=5.0      # Streamlit uses this for charts
+python-dotenv    # only if you plan to load secrets from .env
