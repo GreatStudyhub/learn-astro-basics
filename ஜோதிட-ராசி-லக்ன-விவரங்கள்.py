@@ -51,7 +51,10 @@ data_lagna = {
 
 # Convert to DataFrames
 df_rasi = pd.DataFrame(data_rasi)
+df_rasi.insert(0, "ராசி எண்", range(1, len(df_rasi) + 1))  # Add Zodiac number column
+
 df_lagna = pd.DataFrame(data_lagna)
+df_lagna.insert(0, "லக்ன எண்", range(1, len(df_lagna) + 1))  # Add Lagna number column
 
 # Streamlit UI
 st.set_page_config(page_title="Astrology Table", layout="wide")
@@ -64,14 +67,14 @@ tab1, tab2 = st.tabs(["📌 ராசி விவரங்கள்", "🌟 ல
 with tab1:
     choice = st.selectbox("🔍 ஒரு ராசி மட்டும் பார்க்க விரும்புகிறீர்களா?", ["அனைத்தும்"] + df_rasi["ராசி"].tolist())
     if choice != "அனைத்தும்":
-        st.dataframe(df_rasi[df_rasi["ராசி"] == choice], use_container_width=True)
+        st.dataframe(df_rasi[df_rasi["ராசி"] == choice], use_container_width=True, hide_index=True)
     else:
-        st.dataframe(df_rasi, use_container_width=True)
+        st.dataframe(df_rasi, use_container_width=True, hide_index=True)
 
 # Lagna Tab
 with tab2:
     choice2 = st.selectbox("🔍 ஒரு லக்னம் மட்டும் பார்க்க விரும்புகிறீர்களா?", ["அனைத்தும்"] + df_lagna["லக்னம் (Lagna)"].tolist())
     if choice2 != "அனைத்தும்":
-        st.dataframe(df_lagna[df_lagna["லக்னம் (Lagna)"] == choice2], use_container_width=True)
+        st.dataframe(df_lagna[df_lagna["லக்னம் (Lagna)"] == choice2], use_container_width=True, hide_index=True)
     else:
-        st.dataframe(df_lagna, use_container_width=True)
+        st.dataframe(df_lagna, use_container_width=True, hide_index=True)
